@@ -1,19 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
+
+    <h3>{{ this.$store.state.count }}</h3>
+
+    <button @click="subs">+</button>
+    <button @click="adds">-</button>
+      <button @click="handleActionsAdd(10)">异步+</button>
+    <button @click="handleActionsReduce(10)">异步-</button>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  methods: {
+    subs() {
+      //调用vuex中里的方法固定语法
+      this.$store.commit("add");
+    },
+    adds() {
+      this.$store.commit("sub");
+    },
+handleActionsAdd(n){
+  //如果是使用action 那么这个是固定语法
+      this.$store.dispatch('actionsAddCount',n)
+    },
+    handleActionsReduce(n){
+      this.$store.dispatch('actionsReduceCount',n)
+    }
+
+
+  },
+};
 </script>
 
 <style>
@@ -23,6 +45,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
