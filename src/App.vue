@@ -10,8 +10,10 @@
 
     <button @click="subs">+</button>
     <button @click="adds">-</button>
-      <button @click="handleActionsAdd(10)">异步+</button>
+    <button @click="handleActionsAdd(10)">异步+</button>
     <button @click="handleActionsReduce(10)">异步-</button>
+
+    <button @click="setstor">把值存入sessionstorage</button>
   </div>
 </template>
 <script>
@@ -25,15 +27,17 @@ export default {
     adds() {
       this.$store.commit("sub");
     },
-handleActionsAdd(n){
-  //如果是使用action 那么这个是固定语法
-      this.$store.dispatch('actionsAddCount',n)
+    handleActionsAdd(n) {
+      //如果是使用action 那么这个是固定语法
+      this.$store.dispatch("actionsAddCount", n);
     },
-    handleActionsReduce(n){
-      this.$store.dispatch('actionsReduceCount',n)
-    }
+    handleActionsReduce(n) {
+      this.$store.dispatch("actionsReduceCount", n);
+    },
 
-
+    setstor() {
+      sessionStorage.setItem("testKey", "这是一个测试的value值");
+    },
   },
 };
 </script>

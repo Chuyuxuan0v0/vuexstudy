@@ -32,5 +32,13 @@ export default new Vuex.Store({
     state,
     mutations,
     actions
-})
+}) //导出给main.js使用
 
+
+
+/*
+
+
+
+
+*/
